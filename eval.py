@@ -1,4 +1,5 @@
 from train import *
+import re
 import tqdm
 
 def preprocess_sentence(sentence):
@@ -8,7 +9,7 @@ def preprocess_sentence(sentence):
     return sentence
 
 
-def evaluate(sentence, tokenizer, MAX_LENGTH=128):
+def evaluate(model, sentence, tokenizer, MAX_LENGTH=128):
     sentence = preprocess_sentence(sentence)
     
     START_TOKEN, END_TOKEN = [tokenizer.vocab_size], [tokenizer.vocab_size + 1]
@@ -70,5 +71,5 @@ if __name__ == "__main__":
         
     ckpt = "./logs/checkpoint.ckpt"
     predict_csv = "./csv/predict.csv"
-    tokenizer = create_tokenize(user_question_t, answer_t)
+    tokenizer = create_tokenizer(user_question_t, answer_t)
     eval_main(tokenizer, ckpt, user_question_l, answer_l, predict_csv)

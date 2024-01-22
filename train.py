@@ -125,13 +125,16 @@ if __name__ == "__main__":
     train_csv = "./csv/train_data_list.csv"
     label_csv = "./csv/label_data_list.csv"
     
+    input_csv = "./csv/input_data.csv"
+    question_csv = "./csv/questions.csv"
+    
     split_data(input_csv, train_csv, label_csv)
     
     user_question_t, answer_t = dataframe_to_list(train_csv, question_csv)
     user_question_l, answer_l = dataframe_to_list(label_csv, question_csv)
     
-    tokenizer = create_tokenize(user_question_t, answer_t)
+    tokenizer = create_tokenizer(user_question_t, answer_t)
     user_question_t, answer_t = tokenize_input(tokenizer)
     
     ckpt_dir = "./logs"
-    train(user_question_t, answer_t, ckpt_dir, tokenizer)
+    train_main(user_question_t, answer_t, ckpt_dir, tokenizer)
