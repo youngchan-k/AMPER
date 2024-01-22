@@ -36,7 +36,7 @@ def plot_tag_distribution(question_csv):
     plt.bar(range(300+1), tag_data.loc['number'])
     plt.xlabel("tags")
     plt.ylabel("questions")
-    plt.savefig('D:/EdNet/question_tags.jpg')
+    plt.savefig('./question_tags.png')
 
     # Check the tag distribution for question as proportion (ex. q1 - 1(1/4), 2(1/4), 179(1/4), 181(1/4))
     tag_distribution_prop = {}
@@ -55,7 +55,7 @@ def plot_tag_distribution(question_csv):
     plt.bar(range(300+1), tag_data_prop.loc['number'])
     plt.xlabel("tags")
     plt.ylabel("prop of questions")
-    plt.savefig('D:/EdNet/question_tags_prop.jpg')
+    plt.savefig('./question_tags_prop.png')
 
 
 def save_preprocessd_data(file_dir, save_dir, question_csv):
