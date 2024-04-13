@@ -18,6 +18,6 @@ python main.py
 ```
 
 
-Please refer to the [paper](https://youngchan-k.github.io/assets/paper/ICEC2022/AMPER.pdf) and [slide](https://youngchan-k.github.io/assets/paper/ICEC2022/AMPER_slide.pdf) if you want to see more details
+Please refer to the [paper](https://github.com/youngchan-k/AMPER/blob/main/pdf/AMPER.pdf) and [slide](https://github.com/youngchan-k/AMPER/blob/main/pdf/AMPER_slide.pdf) if you want to see more details
 
 
