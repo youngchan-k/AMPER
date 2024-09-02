@@ -76,14 +76,14 @@ def user_question_matrix(input_csv, question_csv):
     np.save("./user_question_matrix.npy", user_question_matrix)
 
 
-def recommend_question(user, user_process_csv, question_csv, user_question_matrix, predict_csv):
+def recommend_question(user, user_process_csv, question_csv, user_question_matrix, predict_csv, user_random='u146540'):
     user_info = pd.read_csv(user_process_csv)
     question_info = pd.read_csv(question_csv)
     
     user_question_df = pd.DataFrame(user_question_matrix)
     user_question_df.index = [user_list[i] for i in range(len(user_list))]
     user_question_df.columns = [question_list[i] for i in range(len(question_list))]
-
+    
     # Proportion of wrongness w.r.t. question
     ratio_wrong = []
 
@@ -109,9 +109,19 @@ def recommend_question(user, user_process_csv, question_csv, user_question_matri
 
     user_question_df.index = [user_list[i] for i in range(len(user_list))]
     user_question_df.columns = [question_list[i] for i in range(len(question_list))]
-
+    
+    user_list = []
+    for value in list(user_info['user']):
+        if value not in user_list:
+            user_list.append(value)
+    
+    user_data = pd.DataFrame()
+    for i in range(len(user_list)):
+        user_data_add = user_info[user_info['user'] == user_list[i]].head(20)   # 20∞≥ º±≈√
+        user_data = pd.concat([user_data, user_data_add], ignore_index = True)
+  
     user_score = 0
-    for i in range(len(user_data)):
+    for i in range(len(user_info)):
         if user_data.loc[i].correctness == 'O' and user_data.loc[i].user == user:
             
             # Function = 100 * proportion of wrongness for correct answer question
@@ -160,5 +170,5 @@ if __name__ == "__main__":
     user_question_matrix = np.load("./user_question_matrix.npy")
     predict_csv = "./csv/predict.csv"
     
-    recommend_question(user, input_data.csv, question_csv, user_question_matrix, predict_csv)
+    recommend_question(user, input_csv, question_csv, user_question_matrix, predict_csv)
     

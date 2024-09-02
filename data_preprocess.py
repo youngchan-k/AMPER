@@ -1,13 +1,11 @@
 import pandas as pd
 import numpy as np
 
-import tqdm
 import os
 import random
 
 import matplotlib.pyplot as plt
-import time
-import datetime
+
 
 
 def plot_tag_distribution(question_csv):
@@ -67,6 +65,26 @@ def save_preprocessd_data(file_dir, save_dir, question_csv):
 
     # Use only 'question_id', 'correct_answer', 'tags'
     question_info = pd.read_csv(question_csv, usecols = ['question_id','correct_answer','part','tags'])
+    question_tags, all_tag, prop_tag = [], [], []
+
+    # List according to ratio of tag value
+    for i in range(len(question_info)):
+        question_tags = question_info.loc[i].tags.split(';')
+    
+    for i in range(len(question_tags)):
+        all_tag.append(int(question_tags[i]))
+        prop_tag.append(1/len(question_tags))
+        
+    tag_distribution_prop = {}
+    for i in range(300+1):
+        tag_distribution_prop[str(i)] = 0
+
+    for i in range(len(all_tag)):
+        for j in range(300+1):
+            if all_tag[i] == j:
+                tag_distribution_prop[str(j)] += prop_tag[i]
+            
+    tag_data_prop = pd.DataFrame(tag_distribution_prop, index = ['number'])
     tag_data_re = tag_data_prop.transpose()
 
     # Delete the qudstion data if the proportion of tag is less than 20

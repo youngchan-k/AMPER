@@ -1,9 +1,11 @@
+import tensorflow_datasets as tfds
+
 from transformer import *
 from data_preprocess import *
 
 
 def dataframe_to_list(csv_file, question_csv):
-    df = pd.read_csv(csv_file)
+    train_df = pd.read_csv(csv_file)
     question_info = pd.read_csv(question_csv, usecols = ['question_id','correct_answer'])
     
     question = {}
@@ -41,9 +43,8 @@ def create_tokenizer(inputs, outputs, MAX_LENGTH=128):
     return tokenizer
     
     
-def tokenize_input(tokenizer):
+def tokenize_input(tokenizer, inputs, outputs, MAX_LENGTH=128):
     START_TOKEN, END_TOKEN = [tokenizer.vocab_size], [tokenizer.vocab_size + 1]
-    VOCAB_SIZE = tokenizer.vocab_size + 2   # 2 - START_TOKEN & END_TOKEN
     
     # Input = user + question_no / Output = correctness
     tokenized_inputs, tokenized_outputs = [], []
@@ -62,7 +63,7 @@ def tokenize_input(tokenizer):
 
 
 # Loss function
-def loss_function(y_true, y_pred):
+def loss_function(y_true, y_pred, MAX_LENGTH=128):
     y_true = tf.reshape(y_true, shape=(-1, MAX_LENGTH - 1))
   
     loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')(y_true, y_pred)
@@ -74,7 +75,7 @@ def loss_function(y_true, y_pred):
 
 
 # Accuracy
-def accuracy(y_true, y_pred):
+def accuracy(y_true, y_pred, MAX_LENGTH=128):
     y_true = tf.reshape(y_true, shape=(-1, MAX_LENGTH - 1))   # Ensure that labels have shape of (batch_size, MAX_LENGTH - 1)
   
     return tf.keras.metrics.sparse_categorical_accuracy(y_true, y_pred)

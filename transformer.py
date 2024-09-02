@@ -56,7 +56,7 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         key = self.split_heads(key, batch_size)
         value = self.split_heads(value, batch_size)
 
-        scaled_attention = scaled_dot_product_attention(query, key, value, mask)
+        scaled_attention = self.scaled_dot_product_attention(query, key, value, mask)
         scaled_attention = tf.transpose(scaled_attention, perm=[0, 2, 1, 3])
 
         concat_attention = tf.reshape(scaled_attention,(batch_size, -1, self.d_model))
