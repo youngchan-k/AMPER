@@ -1,13 +1,17 @@
-# Towards Minimally Domain-Dependent and Privacy-Preserving Architecture and Algorithms for Digital Me
-Digital Me algorithm is an AI-driven service that allows real-time management to reflect the user's goals, measures, predicts, and evaluates the individual's status, and recommends actions to improve the status. We develop minimally domain-dependent algorithms to simplify the development process and enhance the predictive accuracy and personalized recommendations.
+# Digital Me Experiment with EdNet dataset
+Digital Me is an AI-driven service that allows real-time management to reflect the user's goals, measures, predicts, and evaluates the individual's status, and recommends actions to improve the status. We develop minimally domain-dependent algorithms to simplify the development process and enhance the predictive accuracy and personalized recommendations.
 
-## AMPER(Aim-Measure-Predict-Evaluate-Recommend)
-AMPER is a general Digital Me algorithm to recommend activities that optimize the achievement of users' goals. Digital Me is an AI-driven service that allows real-time management to reflect the user's goals, measures, predicts, and evaluates the individual's status, and recommends actions to improve the status.  
+**Towards Minimally Domain-Dependent and Privacy-Preserving Architecture and Algorithms for Digital Me Services: EdNet and MIMIC-III Experiments (HICSS 2025)**
+[Paper (coming soon)]()
+
+**AMPER(Aim-Measure-Predict-Evaluate-Recommend): The Paradigm of Digital Me (ICEC 2022)**
+[Paper](assets/AMPER.pdf) | [Slide](assets/AMPER_slide.pdf)
+
 
 <img src='./assets/AMPER.PNG'/>
 
 ### Procedure Overview
-The Digital Me algorithm utilizes user state data, according to user-centric objective **A (Aim)**, to establish **M (Measure)** to measure the current state of the user. It only uses data to predict the user's future states through **P (Predict)**. After evaluating the user's future states through **E (Evaluate)**, it is possible to maximize the user's state improvement by providing an **R (Recommendation)** of behavior for achieving the target state.    
+The Digital Me algorithm utilizes user state data, according to user-centric objective **A (Aim)**, to establish **M (Measure)** to measure the current state of the user. It only uses data to predict the user's future states through **P (Predict)**. After evaluating the user's future states through **E (Evaluate)**, it is possible to maximize the user's state improvement by providing an **R (Recommendation)** of behavior for achieving the target state. 
 
 ### Experiment (EdNet)
 We demonstrate the effectiveness of our proposed algorithm structure in enhancing a user's English score. To begin, download the [EdNet KT1 dataset](https://drive.google.com/file/d/1AmGcOs5U31wIIqvthn9ARqJMrMTFTcaw/view) and place the dataset in *'/data/EdNet-KT1/KT1'*. Then, clone the github repository and run the code as the following instructions.
