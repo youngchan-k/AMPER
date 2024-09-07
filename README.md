@@ -1,11 +1,13 @@
 # Minimally Domain-Dependent Digital Me Algorithm
-Digital Me is an AI-driven service that allows real-time management to reflect the user's goals, measures, predicts, and evaluates the individual's status, and recommends actions to improve the status. We develop minimally domain-dependent algorithms to simplify the development process and enhance the predictive accuracy and personalized recommendations. For more information, please refer to the papers listed below.
+Digital Me is an AI-driven service that allows real-time management to reflect the user's goals, measures, predicts, and evaluates the individual's status, and recommends actions to improve the status. We develop minimally domain-dependent algorithms to simplify the development process and enhance the predictive accuracy and personalized recommendations. 
+
+For more information, please refer to the papers listed below.
 
 
-**- Towards Minimally Domain-Dependent and Privacy-Preserving Architecture and Algorithms for Digital Me Services: EdNet and MIMIC-III Experiments** *(HICSS 2025)*
+**1) Towards Minimally Domain-Dependent and Privacy-Preserving Architecture and Algorithms for Digital Me Services: EdNet and MIMIC-III Experiments** *(HICSS 2025)*
 [[Paper (coming soon)]()]
 
-**- AMPER(Aim-Measure-Predict-Evaluate-Recommend): The Paradigm of Digital Me** *(ICEC 2022)*
+**2) AMPER(Aim-Measure-Predict-Evaluate-Recommend): The Paradigm of Digital Me** *(ICEC 2022)*
 [[Paper](assets/AMPER.pdf) | [Slide](assets/AMPER_slide.pdf)]
 
 
