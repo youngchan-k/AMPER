@@ -8,7 +8,7 @@ For more information, please refer to the papers listed below.
 [[Paper (coming soon)]()]
 
 **2) AMPER(Aim-Measure-Predict-Evaluate-Recommend): The Paradigm of Digital Me** *(ICEC 2022)*
-[[Paper](assets/AMPER.pdf) | [Slide](assets/AMPER_slide.pdf)]
+[[Paper](https://youngchan-k.github.io/assets/pdf/AMPER.pdf) | [Slide](https://youngchan-k.github.io/assets/pdf/AMPER_slide.pdf)]
 
 
 ## AMPER Framework
