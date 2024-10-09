@@ -1,4 +1,4 @@
-# Minimally Domain-Dependent Digital Me Algorithm
+# Minimally Domain-Dependent and Privacy-Preserving Digital Me Algorithms
 Digital Me is an AI-driven service that allows real-time management to reflect the user's goals, measures, predicts, and evaluates the individual's status, and recommends actions to improve the status. We develop minimally domain-dependent algorithms to simplify the development process and enhance the predictive accuracy and personalized recommendations. 
 
 
