@@ -5,10 +5,10 @@ Digital Me is an AI-driven service that allows real-time management to reflect t
 For more information, please refer to the papers listed below.
 
 **1) Towards Minimally Domain-Dependent and Privacy-Preserving Architecture and Algorithms for Digital Me Services: EdNet and MIMIC-III Experiments** *(HICSS 2025)*
-[[Paper](./assets/pdf/DigitalMe_F.pdf) | [Slide](./assets/pdf/DigitalMe_F_slide.pdf)]
+[[Paper](https://youngchan-k.github.io/assets/pdf/DigitalMe_F.pdf) | [Slide](https://youngchan-k.github.io/assets/pdf/DigitalMe_F_slide.pdf)]
 
 **2) AMPER(Aim-Measure-Predict-Evaluate-Recommend): The Paradigm of Digital Me** *(ICEC 2022)*
-[[Paper](./assets/pdf/AMPER.pdf) | [Slide](./assets/pdf/AMPER_slide.pdf)]
+[[Paper](https://youngchan-k.github.io/assets/pdf/AMPER.pdf) | [Slide](https://youngchan-k.github.io/assets/pdf/AMPER_slide.pdf)]
 
 
 ## AMPER Framework
