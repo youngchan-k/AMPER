@@ -1,0 +1,6 @@
+tensorflow>=2.0
+tensorflow-datasets
+pandas
+numpy
+matplotlib
+tqdm
