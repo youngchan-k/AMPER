@@ -1,45 +1,52 @@
-from data_preprocess import *
-from transformer import *
-from train import *
-from eval import *
-from recommendation import *
+"""AMPER pipeline: preprocess → train → evaluate."""
+
+import os
+
+from amper import config
+from amper.data.preprocess import main_data_preprocess, split_data
+from amper.evaluation.eval import eval_main
+from amper.training.train import (
+    create_tokenizer,
+    dataframe_to_list,
+    tokenize_input,
+    train_main,
+)
 
 
-## Data preprocessing
-print("Start data preprocessing!\n")
+def main():
+    os.makedirs(config.CSV_DIR, exist_ok=True)
+    os.makedirs(config.LOGS_DIR, exist_ok=True)
 
-main_data_preprocess()
+    print("Start data preprocessing!\n")
+    main_data_preprocess()
+    split_data(config.INPUT_CSV, config.TRAIN_CSV, config.LABEL_CSV)
+    print("Finish data preprocessing!\n")
 
-train_csv = "./csv/train_data_list.csv"
-label_csv = "./csv/label_data_list.csv"
+    print("Start training!\n")
+    user_question_t, answer_t = dataframe_to_list(
+        config.TRAIN_CSV, config.QUESTION_CSV
+    )
+    user_question_l, answer_l = dataframe_to_list(
+        config.LABEL_CSV, config.QUESTION_CSV
+    )
 
-split_data(input_csv, train_csv, label_csv)
+    tokenizer = create_tokenizer(user_question_t, answer_t)
+    user_question_t, answer_t = tokenize_input(
+        tokenizer, user_question_t, answer_t
+    )
+    train_main(user_question_t, answer_t, config.LOGS_DIR, tokenizer)
+    print("Finish training!\n")
 
-print("Finish data preprocessing!\n")
-
-
-## Train
-print("Start training!\n")
-
-user_question_t, answer_t = dataframe_to_list(train_csv, question_csv)
-user_question_l, answer_l = dataframe_to_list(label_csv, question_csv)
-
-tokenizer = create_tokenizer(user_question_t, answer_t)
-user_question_t, answer_t = tokenize_input(tokenizer)
-
-ckpt_dir = "./logs"
-train_main(user_question_t, answer_t, ckpt_dir, tokenizer)
-
-print("Finish training!\n")
+    print("Start evaluation!\n")
+    eval_main(
+        tokenizer,
+        config.CHECKPOINT_PATH,
+        user_question_l,
+        answer_l,
+        config.PREDICT_CSV,
+    )
+    print("Finish evaluation!\n")
 
 
-## Evaluation
-print("Start evaluation!\n")
-
-ckpt = "./logs/checkpoint.ckpt"
-predict_csv = "./csv/predict.csv"
-tokenizer = create_tokenizer(user_question_t, answer_t)
-
-eval_main(tokenizer, ckpt, user_question_l, answer_l, predict_csv)
-
-print("Finish evaluation!\n")
+if __name__ == "__main__":
+    main()
