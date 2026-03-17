@@ -1,42 +1,60 @@
-# Minimally Domain-Dependent and Privacy-Preserving Digital Me Algorithms
-Digital Me is an AI-driven service that allows real-time management to reflect the user's goals, measures, predicts, and evaluates the individual's status, and recommends actions to improve the status. We develop minimally domain-dependent algorithms to simplify the development process and enhance the predictive accuracy and personalized recommendations.
+# AMPER
 
+**Aim → Measure → Predict → Evaluate → Recommend** — a minimally domain-dependent, privacy-preserving framework for Digital Me services.
 
-For more information, please refer to the papers listed below.
+Digital Me is an AI-driven service that manages user goals in real time: it **measures** current status, **predicts** future states, **evaluates** outcomes, and **recommends** actions to improve them. AMPER implements this paradigm with algorithms that stay largely domain-agnostic, so you can adapt them across use cases while keeping development simple and recommendations accurate.
 
-**1) Towards Minimally Domain-Dependent and Privacy-Preserving Architecture and Algorithms for Digital Me Services: EdNet and MIMIC-III Experiments** *(HICSS 2025)*
-
-**2) AMPER (Aim-Measure-Predict-Evaluate-Recommend): The Paradigm of Digital Me** *(ICEC 2022)*
-
+---
 
 ## AMPER Framework
-<img src='./AMPER.PNG'/>
 
-### Procedure Overview
-The Digital Me algorithm utilizes user state data, according to user-centric objective **A (Aim)**, to establish **M (Measure)** to measure the current state of the user. It only uses data to predict the user's future states through **P (Predict)**. After evaluating the user's future states through **E (Evaluate)**, it is possible to maximize the user's state improvement by providing an **R (Recommendation)** of behavior for achieving the target state.
+<img src='./AMPER.PNG' alt="AMPER framework overview" width="700"/>
 
-### Experiment with EdNet data
-We demonstrate the effectiveness of our proposed algorithm structure in enhancing a user's English score. To begin, download the [EdNet KT1 dataset](https://drive.google.com/file/d/1AmGcOs5U31wIIqvthn9ARqJMrMTFTcaw/view) and place the dataset in `data/EdNet-KT1/KT1`. Ensure `csv/questions.csv` is present (see project structure). Then clone the repository and run:
+### How it works
+
+The pipeline is built around five steps, driven by user-centric objectives and data:
+
+| Step | Name | Role |
+|------|------|------|
+| **A** | **Aim** | Define the user’s goal and what “better” means. |
+| **M** | **Measure** | Use available data to quantify the user’s current state. |
+| **P** | **Predict** | Model future states from the measured data. |
+| **E** | **Evaluate** | Assess predicted states against the aim. |
+| **R** | **Recommend** | Suggest actions that best move the user toward the target state. |
+
+Data flows **A → M → P → E → R**: from defining the aim and measuring the present, through prediction and evaluation, to actionable recommendations.
+
+---
+
+## Quick Start
+
+### 1. Clone and install
 
 ```bash
 git clone https://github.com/youngchan-k/AMPER.git
 cd AMPER
-python main.py
-```
-
-The pipeline runs: **preprocess** → **train** → **evaluate**.
-
-### Requirements
-- Python 3.x
-
-Install dependencies:
-
-```bash
 pip install -r requirements.txt
 ```
 
-### Project structure
-Code is organized under the `amper` package:
+**Requirements:** Python 3.x (see `requirements.txt` for TensorFlow, pandas, etc.).
+
+### 2. Get the data
+
+- Download the [EdNet KT1 dataset](https://drive.google.com/file/d/1AmGcOs5U31wIIqvthn9ARqJMrMTFTcaw/view).
+- Place it under **`data/EdNet-KT1/KT1`**.
+- Ensure **`csv/questions.csv`** exists (see [Project structure](#project-structure) below).
+
+### 3. Run the pipeline
+
+```bash
+python main.py
+```
+
+This runs **preprocess → train → evaluate** in one go. Checkpoints and outputs go to `logs/` and `csv/` as configured in `amper/config.py`.
+
+---
+
+## Project structure
 
 ```
 AMPER/
@@ -48,12 +66,19 @@ AMPER/
 │   ├── model/
 │   │   └── transformer.py  # Transformer, encoder/decoder, attention, masks
 │   ├── training/
-│   │   └── train.py        # dataframe_to_list, tokenizer, train_main
+│   │   └── train.py       # dataframe_to_list, tokenizer, train_main
 │   ├── evaluation/
-│   │   └── eval.py         # evaluate, predict, eval_main
+│   │   └── eval.py        # evaluate, predict, eval_main
 │   └── recommendation/
-│       └── recommend.py    # user_question_matrix, recommend_question
+│       └── recommend.py   # user_question_matrix, recommend_question
 ├── csv/                    # Input/output CSVs (questions.csv required)
 ├── data/                   # Raw EdNet-KT1 data → place in data/EdNet-KT1/KT1
 └── logs/                   # Checkpoints
 ```
+
+---
+
+## References
+
+- **Towards Minimally Domain-Dependent and Privacy-Preserving Architecture and Algorithms for Digital Me Services: EdNet and MIMIC-III Experiments** — *HICSS 2025*
+- **AMPER (Aim-Measure-Predict-Evaluate-Recommend): The Paradigm of Digital Me** — *ICEC 2022*
